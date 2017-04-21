@@ -37,36 +37,36 @@ int main()
 	}
 
 	/*Creating a json object*/
-	json_object *jobj = json_object_new_object();
+	//json_object *jobj = json_object_new_object();
 
 	/*Creating a json integer*/
-	json_object *PinNo = json_object_new_int(10);
+	//json_object *PinNo = json_object_new_int(10);
 
 	/*Creating a json boolean*/
-	json_object *PinValue = json_object_new_boolean(1);
-
-	/*Creating a json boolean*/
-	json_object *PinDir = json_object_new_string("input");
+	//json_object *PinValue = json_object_new_boolean(1);
+	//json_object *PinDir = json_object_new_boolean(0);
 
 	/*Creating a json array*/
-	json_object *jarray = json_object_new_array();
+	//json_object *jarray = json_object_new_array();
 
 	
 	/*Adding the above created json strings to the array*/
-	json_object_array_add(jarray,PinNo);
+	/*json_object_array_add(jarray,PinNo);
 	json_object_array_add(jarray,PinValue);
-	json_object_array_add(jarray,PinDir);
+	json_object_array_add(jarray,PinDir);*/
+	 
 	
-	json_object_object_add(jobj,"Pin Details", jarray);
-	/*json_object_object_add(jobj,"Pin Number", PinNo);
-	json_object_object_add(jobj,"Pin Direction", PinDir);
-	json_object_object_add(jobj,"Pin Value", PinValue);*/	
-	//printf("Size of JSON object- %lu\n", sizeof(jobj));
-	printf("Size of JSON_TO_STRING- %lu,\n %s\n", sizeof(json_object_to_json_string(jobj)), 	json_object_to_json_string(jobj));
-	    /* all previous code until
-    printf("Size of string- %lu\n", sizeof(json_object_to_json_string(jobj)))*/
+	//json_object_object_add(jobj,"PinDetails", jarray);
 
-    char temp_buff[MAX_SIZE];
+	json_object *jobj = json_object_new_object();
+	json_object_object_add(jobj,"PinNum", json_object_new_int(5));
+	json_object_object_add(jobj,"PinVal", json_object_new_boolean(0));
+	json_object_object_add(jobj,"PinDir", json_object_new_boolean(0));
+	printf("Size of String %lu,\n %s\n", sizeof(json_object_to_json_string(jobj)), json_object_to_json_string(jobj));
+	write(fd, json_object_to_json_string(jobj), sizeof(json_object_to_json_string(jobj)));
+   
+
+ char temp_buff[MAX_SIZE];
 
     if (strcpy(temp_buff, json_object_to_json_string(jobj)) == NULL)
     {
